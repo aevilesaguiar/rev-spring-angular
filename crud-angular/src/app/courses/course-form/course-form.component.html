@@ -5,7 +5,7 @@
   <mat-card-content>
 
   <!-- [formGroup]="form" linkar através dessa diretiva e a variavel que está no component chamada: form: FormGroup;-->
-  <form [formGroup]="form" >
+  <form [formGroup]="form" class="min-width" >
     <mat-form-field class="full-width">
       <!--essa diretiva matInput é quem informa ao angular para poder aplicar o css do material designer-->
       <input matInput placeholder="Nome" formControlName="name"><!--formControlName="name" associa ao  name:[null],-->

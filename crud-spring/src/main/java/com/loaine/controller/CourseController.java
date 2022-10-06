@@ -4,6 +4,8 @@ package com.loaine.controller;
 import com.loaine.model.Course;
 import com.loaine.repository.CourseRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +28,22 @@ public class CourseController {
         return courseRepository.findAll();
     }
 
+/*
+//fazendo post com ResponseEntity, a vantagem de usar é  caso vc precise manipular header, cabeçalho ou algumas informações do response
+você tem todos os métodos para fazer isso. Se tivermos que manusear o response é indicado fazer com response status
+,mas se tivesse que alterar o response seria indicado o Response Entity
     @PostMapping
-    //@RequestMapping(method=RequestMethod.POST)
-    public void create(@RequestBody Course course){//O spring pega o Payload request o objeto  que vimos no angular e comprar com a classe model se houver nome diferente ele não faz o mapeamento e tudo isso consigo fazer devido o @RequestBody
-       // System.out.println(course.getName()); <-teste
+    public ResponseEntity<Course> create(@RequestBody Course course){//O spring pega o Payload request o objeto  que vimos no angular e comprar com a classe model se houver nome diferente ele não faz o mapeamento e tudo isso consigo fazer devido o @RequestBody
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(courseRepository.save(course));
+}*/
 
-        courseRepository.save(course);
+    @PostMapping
+    @ResponseStatus(code=HttpStatus.CREATED)
+    public Course create(@RequestBody Course course){
+        return courseRepository.save(course);
     }
+
+
     
 }
