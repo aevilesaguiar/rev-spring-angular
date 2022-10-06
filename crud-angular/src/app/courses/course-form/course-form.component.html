@@ -1,0 +1,30 @@
+<mat-card>
+
+  <mat-toolbar color="primary">Detalher do Curso</mat-toolbar>
+
+  <mat-card-content>
+
+  <!-- [formGroup]="form" linkar através dessa diretiva e a variavel que está no component chamada: form: FormGroup;-->
+  <form [formGroup]="form" >
+    <mat-form-field class="full-width">
+      <!--essa diretiva matInput é quem informa ao angular para poder aplicar o css do material designer-->
+      <input matInput placeholder="Nome" formControlName="name"><!--formControlName="name" associa ao  name:[null],-->
+    </mat-form-field >
+
+    <mat-form-field class="full-width">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="category">
+        <mat-option value="null"></mat-option>
+        <mat-option value="front-end">Front-End</mat-option>
+        <mat-option value="back-ens">Back-End</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+
+</mat-card-content>
+<mat-card-actions>
+  <button mat-raised-button color="primary" (click)="onSubmit()">SALVAR</button>
+  <button mat-raised-button (click)="onCancel()">CANCELAR</button>
+</mat-card-actions>
+</mat-card>

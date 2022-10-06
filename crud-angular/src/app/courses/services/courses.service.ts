@@ -13,7 +13,7 @@ para o servidor e no angular nós temos uma classe utilitária que fornece todos
   providedIn: 'root'
 })
 export class CoursesService {
-  private readonly API='/assets/cursos.json';
+  private readonly API='api/courses';//ao invés de usar todo o http://localhost:8080/api/courses eu uso o api/courses
 
   constructor(private httpClient: HttpClient) { }
 
@@ -32,9 +32,14 @@ export class CoursesService {
     .pipe(
       //first(carrega só o primeiro), take-assim que o servidor der uma resposta eu vou finalizar a inscrição
       first(),
-      delay(1000),
+      //delay(1000),
       tap(courses=> console.log(courses))
     );
 
+}
+//record=registro
+save(record:Course){
+   // console.log(record);
+   return this.httpClient.post<Course>(this.API, record)//.pipe(first());
 }
 }
