@@ -1,0 +1,42 @@
+<mat-card>
+
+  <!--O que é o Angular Async Pipe? O Angular async pipe serve para fazer a saída de um valor na página, mesmo que o valor demore um pouco a ser atribuído na variável. Então o async é muito útil quando você precisa fazer chamadas ao servidor e vai demorar alguns segundos para retornar o valor. courses | async-->
+  <mat-toolbar color="primary">
+    <span>Cursos Disponíveis</span>
+  </mat-toolbar>
+
+  <div *ngIf="courses$ | async as courses; else loading ">
+  <!--datasource : pode ser dois tipos de informações ou um array/lista ou um Observable  -->
+  <table mat-table [dataSource]="courses" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nome Curso </th>
+      <td mat-cell *matCellDef="let course"> {{ course.name }} </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+      <td mat-cell *matCellDef="let course"> {{course.category}} </td>
+    </ng-container>
+
+
+    <!--especificar as colunas que vou mostrar nas tabelas-->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!--para cada linha para cada registro nós vamos mostrar essas colunas que
+    foram declaradas na variavel  displayedColumns-->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<ng-template #loading>
+  <div class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+</ng-template>
+
+</mat-card>

@@ -1,0 +1,21 @@
+@import '@angular/material/theming';
+@include mat-core();
+//https://material.angular.io/guide/theming
+//https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+
+$custom-app-primary:mat-palette($mat-orange);//blue
+$custom-app-secondary:mat-palette($mat-amber, A200, A400, 700);
+$custom-app-warn:mat-palette($mat-red);
+
+//cor do tema usando as 3 cores
+
+$custom-theme: mat-light-theme($custom-app-primary,$custom-app-secondary,$custom-app-warn);
+
+
+//informar ao angular que queremos utilizar o tema desenvolvido acima e não o padrão
+@include angular-material-theme($custom-theme);
+
+html, body { height: 100%;}
+
+body
+{ margin:0; font-family: Roboto, "Helvetica Neue", sans-serif;}
