@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Course } from '../model/course';
-import { CoursesService } from '../services/courses.service';
-import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { Course } from '../../model/course';
+import { CoursesService } from '../../services/courses.service';
+import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -16,8 +16,7 @@ export class CoursesComponent implements OnInit {
 
   //$- significa que é um observable
   courses$:Observable <Course[]>;
-//as colunas que vamos mostrar
-  displayedColumns=['name','category','actions'];
+
 
 
 //Router a classe que controla o roteamento no angular
@@ -49,6 +48,11 @@ export class CoursesComponent implements OnInit {
 
   onAdd(){
     this.router.navigate(['new'], {relativeTo:this.route})//o angular relativeTo:this.route e agrega a rota atual
+  }
+
+  onEdit(course : Course){
+    this.router.navigate(['edit', course._id], {relativeTo:this.route})
+
   }
 
 }

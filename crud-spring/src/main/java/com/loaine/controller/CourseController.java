@@ -28,6 +28,17 @@ public class CourseController {
         return courseRepository.findAll();
     }
 
+
+    //ResponseEntity entidade de Resposta do Spring
+    @GetMapping("/{id}")
+    public ResponseEntity<Course> findById(@PathVariable Long id){//@PathVariable parte da url
+        //Optional de retorno do java
+       return courseRepository.findById(id)
+               .map(record-> ResponseEntity.ok().body(record))
+               .orElse(ResponseEntity.notFound().build());
+
+    }
+
 /*
 //fazendo post com ResponseEntity, a vantagem de usar é  caso vc precise manipular header, cabeçalho ou algumas informações do response
 você tem todos os métodos para fazer isso. Se tivermos que manusear o response é indicado fazer com response status
@@ -45,5 +56,8 @@ você tem todos os métodos para fazer isso. Se tivermos que manusear o response
     }
 
 
-    
+
+
+
+
 }

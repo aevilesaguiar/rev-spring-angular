@@ -1,0 +1,18 @@
+<mat-card>
+
+  <!--O que é o Angular Async Pipe? O Angular async pipe serve para fazer a saída de um valor na página, mesmo que o valor demore um pouco a ser atribuído na variável. Então o async é muito útil quando você precisa fazer chamadas ao servidor e vai demorar alguns segundos para retornar o valor. courses | async-->
+  <mat-toolbar color="primary">Cursos Disponíveis</mat-toolbar>
+<div class="mat-elevation-z8 column-flex">
+
+  <app-courses-list *ngIf="courses$ | async as courses; else loading "
+  [courses]="courses"
+  (add)="onAdd()" (edit)="onEdit($event)"></app-courses-list>
+
+
+<ng-template #loading>
+  <div class="loading-spinner">
+  <mat-spinner></mat-spinner>
+</div>
+</ng-template>
+</div>
+</mat-card>
